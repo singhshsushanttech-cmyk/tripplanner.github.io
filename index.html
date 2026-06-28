@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p>&#9992;&#65039; Plan your next adventure together</p>
+  <h1>Trip Planner</h1>
+  <div class="trip-name-wrap">
+    <span id="tripNameDisplay" title="Click to rename">&#128506;&#65039; Our Trip</span>
+    <input id="tripNameInput" type="text" placeholder="Trip name..." maxlength="40" />
+  </div>
+  <div class="trip-dates">
+    <label>From <input type="date" id="dateFrom" /></label>
+    <label>To   <input type="date" id="dateTo"   /></label>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-card">
+    <div class="progress-emoji" id="progressEmoji">&#128506;&#65039;</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span id="progressText">No items yet</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ADD FORM -->
+  <div class="add-card">
+    <h3>+ Add to itinerary</h3>
+    <div class="add-row">
+      <input class="item-name" id="newName" type="text" placeholder="Place or activity name…" maxlength="80" />
+      <select class="item-cat" id="newCat">
+        <option value="place">&#128205; Place to Visit</option>
+        <option value="food">&#127374;&#65039; Food &amp; Drink</option>
+        <option value="activity">&#127919; Activity</option>
+        <option value="stay">&#127976;&#65039; Stay</option>
+        <option value="other">&#128204; Other</option>
+      </select>
+      <input class="item-date" id="newDate" type="date" title="Planned date (optional)" />
+      <button class="btn btn-primary btn-add" onclick="addItem()">Add</button>
+    </div>
+    <div class="add-row" style="margin-top:8px;">
+      <textarea class="item-note" id="newNote" placeholder="Notes (optional)… e.g. 'Book tickets in advance'"></textarea>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="setFilter('all',this)">All</div>
+    <div class="tab" onclick="setFilter('place',this)">&#128205; Places</div>
+    <div class="tab" onclick="setFilter('food',this)">&#127374;&#65039; Food</div>
+    <div class="tab" onclick="setFilter('activity',this)">&#127919; Activities</div>
+    <div class="tab" onclick="setFilter('stay',this)">&#127976;&#65039; Stay</div>
+    <div class="tab" onclick="setFilter('other',this)">&#128204; Other</div>
+    <div class="tab" onclick="setFilter('done',this)">&#9989; Done</div>
+  </div>
+
+  <!-- ITEMS -->
+  <div id="itemsContainer"></div>
+
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <h3>Edit Item</h3>
+    <div class="field">
+      <label>Name</label>
+      <input id="editName" type="text" maxlength="80" />
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="editCat">
+        <option value="place">&#128205; Place to Visit</option>
+        <option value="food">&#127374;&#65039; Food &amp; Drink</option>
+        <option value="activity">&#127919; Activity</option>
+        <option value="stay">&#127976;&#65039; Stay</option>
+        <option value="other">&#128204; Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Planned Date</label>
+      <input id="editDate" type="date" />
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="editNote"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-save"  onclick="saveEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
